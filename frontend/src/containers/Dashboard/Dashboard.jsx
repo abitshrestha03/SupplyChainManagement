@@ -1,5 +1,4 @@
-import { useState, useCallback } from "react";
-import { useDropzone } from "react-dropzone"; // Import useDropzone hook
+import { useState } from "react";
 import Button from "../../components/Buttons/Button";
 import DashboardCard from "../../components/Cards/DashboardCards";
 import DashboardTabs from "../../components/Tabs/DashboardTab";
@@ -11,24 +10,11 @@ import LineChart from "../../components/Charts/LineChart";
 import BarChartGraph from "../../components/Charts/BarChart";
 import Table from "../../components/Table/Table";
 import DownArrowIcon from "../../assets/icons/DownArrowIcon";
-import { UploadCloud } from "lucide-react"; // Adjust this import if necessary
+import AddShipmentModal from "../Shipment/NewShipmentModal";
 
 const Dashboard = () => {
-  const [files, setFiles] = useState([]); // No type annotation needed in JSX
-
-  const onDrop = useCallback((acceptedFiles) => {
-    setFiles(acceptedFiles); // Accepted files will be an array of File objects
-  }, []);
-
-  const { getRootProps, getInputProps, isDragActive } = useDropzone({
-    onDrop,
-    accept: {
-      "image/jpeg": [".jpeg", ".jpg"],
-      "image/png": [".png"],
-    },
-  });
-
   const [isModalOpen, setIsModalOpen] = useState(false);
+
 
   const columns = [
     { label: "Order Id", accessor: "orderId" },
@@ -166,8 +152,9 @@ const Dashboard = () => {
           title="Shipment Tracking"
         />
       </div>
+      <AddShipmentModal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} />
 
-      {isModalOpen && (
+      {/* {isModalOpen && (
         <div className="fixed inset-0 bg-black bg-opacity-50 flex items-stretch justify-center z-50">
           <div className="bg-white w-[848px] rounded-lg shadow-lg relative flex flex-col h-full">
             <div className="bg-[#f5f5f5] rounded-t-lg flex justify-between pt-2 px-4">
@@ -295,12 +282,12 @@ const Dashboard = () => {
               </div>
             </form>
 
-            <div className="flex justify-center space-x-2 p-4 mt-[-20px]">
+            <div className="flex justify-center space-x-2 p-4 mt-[20px]">
               <Button text="Add Shipment" bgColor="#003DFF" textColor="white" />
             </div>
           </div>
         </div>
-      )}
+      )} */}
     </div>
   );
 };

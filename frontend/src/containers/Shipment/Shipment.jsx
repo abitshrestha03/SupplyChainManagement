@@ -7,8 +7,11 @@ import UpwardArrowIcon from "../../assets/icons/UpwardArrowIcon";
 import UpwardCountryIcon from "../../assets/icons/UpwardCountryIcon";
 import DownwardCountryIcon from "../../assets/icons/DownwardCountryIcon";
 import Table from "../../components/Table/Table";
+import AddShipmentModal from "./NewShipmentModal";
+import { useState } from "react";
 
 const Shipment = () => {
+  const [isModalOpen, setIsModalOpen] = useState(false);
   const columns = [
     { label: "Order Id", accessor: "orderId" },
     { label: "Category", accessor: "category" },
@@ -42,7 +45,7 @@ const Shipment = () => {
       destination: "Nepal",
       fee: "$2500",
       status: "Shipping",
-    }
+    },
   ];
   const data = {
     labels: Array.from({ length: 30 }, (_, i) => i + 1),
@@ -55,7 +58,7 @@ const Shipment = () => {
         ],
         borderColor: "#8bd35e",
         fill: false,
-        borderWidth:2,
+        borderWidth: 2,
       },
       {
         label: "Efficiency",
@@ -65,7 +68,7 @@ const Shipment = () => {
         ],
         borderColor: "#26a5ff",
         fill: false,
-        borderWidth:2,
+        borderWidth: 2,
       },
       {
         label: "Delay Rate",
@@ -74,7 +77,7 @@ const Shipment = () => {
           11, 11, 11, 10, 10, 10, 9, 9, 9, 9, 9, 8, 8,
         ],
         borderColor: "#ff0000",
-        borderWidth:2,
+        borderWidth: 2,
         fill: false,
       },
     ],
@@ -87,14 +90,39 @@ const Shipment = () => {
       legend: {
         display: true,
         position: "bottom",
+        align: "start",
+        labels: {
+          usePointStyle: true,
+          boxWidth: 10,
+          padding: 35,
+          font: {
+            size: 9,
+            weight: "normal",
+            color: "#969696",
+          },
+          generateLabels: (chart) => {
+            const datasets = chart.data.datasets;
+            return datasets.map((dataset, i) => ({
+              text: dataset.label,
+              fillStyle: dataset.borderColor, // Match legend box color with line color
+              strokeStyle: dataset.borderColor,
+              hidden: !chart.isDatasetVisible(i),
+              lineCap: dataset.borderCapStyle,
+              lineDash: dataset.borderDash,
+              lineDashOffset: dataset.borderDashOffset,
+              lineJoin: dataset.borderJoinStyle,
+              pointStyle: 'rect', // Sets point style to rectangle
+            }));
+          },
+        },
       },
     },
     layout: {
       padding: {
-        left: -3, // Padding for the left side of the chart area
-        right: 10, // Padding for the right side of the chart area
-        top: 20, // Padding above the chart content
-        bottom: 10, // Padding below the chart content
+        left: -3,
+        right: 10,
+        top: 20,
+        bottom: 10,
       },
     },
     scales: {
@@ -155,7 +183,7 @@ const Shipment = () => {
       },
     },
   };
-
+  
   const topCountries = [
     { country: "China", sales: "12.50k", trend: "up" },
     { country: "USA", sales: "9.25k", trend: "up" },
@@ -177,7 +205,12 @@ const Shipment = () => {
             textColor="gray"
             icon={<DownArrowIcon />}
           />
-          <Button text="+ New Shipment" bgColor="#003DFF" textColor="white" />
+          <button
+            className="bg-[#003DFF] text-white rounded-md shadow-lg px-4 py-2"
+            onClick={() => setIsModalOpen(true)}
+          >
+            + New Shipment
+          </button>{" "}
         </div>
       </div>
       <div className="flex space-x-6">
@@ -228,45 +261,54 @@ const Shipment = () => {
             </div>
           </div>
           <div className="px-2">
-          <div className="text-3xl mb-4 flex justify-between">34.89k
-          <p className="text-gray-500 text-xs mt-4">Since Last Week</p>
-          </div>
-          <ul>
-            {topCountries.map((country, index) => (
-              <li
-                key={index}
-                className="flex justify-between items-center py-2 my-4 last:border-none"
-              >
-                <span className="flex items-center">
-                  <img
-                    src={`https://flagcdn.com/w20/${country.country
-                      .toLowerCase()
-                      .slice(0, 2)}.png`}
-                    alt={country.country}
-                    className="mr-2 rounded-full w-6 h-6"
-                  />
-                  {country.country}
-                </span>
-                <span
-                    className={`ml-2 ${
-                      country.trend === "up" ? <UpwardCountryIcon/> : <DownwardCountryIcon/>
-                    }`}
-                  >{
-                    country.trend === "up" ? <UpwardCountryIcon/> : <DownwardCountryIcon/>
-                  }
-                    </span>
-                <span className="flex items-center text-sm">
-                  {country.sales}
+            <div className="text-3xl mb-4 flex justify-between">
+              34.89k
+              <p className="text-gray-500 text-xs mt-4">Since Last Week</p>
+            </div>
+            <ul>
+              {topCountries.map((country, index) => (
+                <li
+                  key={index}
+                  className="flex justify-between items-center py-2 my-4 last:border-none"
+                >
+                  <span className="flex items-center">
+                    <img
+                      src={`https://flagcdn.com/w20/${country.country
+                        .toLowerCase()
+                        .slice(0, 2)}.png`}
+                      alt={country.country}
+                      className="mr-2 rounded-full w-6 h-6"
+                    />
+                    {country.country}
+                  </span>
                   <span
                     className={`ml-2 ${
-                      country.trend === "up" ? "text-green-500" : "text-red-500"
+                      country.trend === "up" ? (
+                        <UpwardCountryIcon />
+                      ) : (
+                        <DownwardCountryIcon />
+                      )
                     }`}
                   >
+                    {country.trend === "up" ? (
+                      <UpwardCountryIcon />
+                    ) : (
+                      <DownwardCountryIcon />
+                    )}
                   </span>
-                </span>
-              </li>
-            ))}
-          </ul>
+                  <span className="flex items-center text-sm">
+                    {country.sales}
+                    <span
+                      className={`ml-2 ${
+                        country.trend === "up"
+                          ? "text-green-500"
+                          : "text-red-500"
+                      }`}
+                    ></span>
+                  </span>
+                </li>
+              ))}
+            </ul>
           </div>
         </div>
       </div>
@@ -276,7 +318,12 @@ const Shipment = () => {
           data={shipmentData}
           title="Shipment Tracking"
         />
-      </div>    </div>
+      </div>{" "}
+      <AddShipmentModal
+        isOpen={isModalOpen}
+        onClose={() => setIsModalOpen(false)}
+      />
+    </div>
   );
 };
 

@@ -64,11 +64,11 @@ const orders = [
 const getStatusStyle = (status) => {
   switch (status) {
     case "Delivered":
-      return "bg-green-100 text-green-600";
+      return "bg-table-green text-txt-green";
     case "Pending":
-      return "bg-yellow-100 text-yellow-600";
+      return "bg-yellow-100 text-txt-yellow";
     case "Shipping":
-      return "bg-blue-100 text-blue-600";
+      return "bg-table-blue text-txt-blue";
     default:
       return "";
   }
@@ -77,6 +77,7 @@ const getStatusStyle = (status) => {
 const OrdersTable = () => {
   const [selectedOrders, setSelectedOrders] = useState([]);
   const [selectAll, setSelectAll] = useState(false);
+  const [tableData, setTableData] = useState(orders); // State to handle table data updates
 
   // Handle row checkbox change
   const handleRowSelect = (orderId) => {
@@ -100,10 +101,30 @@ const OrdersTable = () => {
   // Determine if a row is selected
   const isRowSelected = (orderId) => selectedOrders.includes(orderId);
 
+  // Handle status click to change the value
+  const handleStatusClick = (orderId) => {
+    const updatedData = [...tableData];
+    const orderIndex = updatedData.findIndex((order) => order.id === orderId);
+    const currentStatus = updatedData[orderIndex].status;
+
+    // Logic to cycle through statuses
+    if (currentStatus === "Delivered") {
+      updatedData[orderIndex].status = "Pending";
+    } else if (currentStatus === "Pending") {
+      updatedData[orderIndex].status = "Shipping";
+    } else if (currentStatus === "Shipping") {
+      updatedData[orderIndex].status = "Delivered";
+    }
+
+    setTableData(updatedData); // Update the table data with the new status
+  };
+
   return (
     <div className="p-4">
       <div className="space-x-4 text-gray-600 mt-2 ml-1">
-        <button className="text-blue border-b border-blue font-semibold">All</button>
+        <button className="text-blue border-b border-blue font-semibold">
+          All
+        </button>
         <button>Unfulfilled</button>
         <button>Unpaid</button>
         <button>In Transit</button>
@@ -174,9 +195,9 @@ const OrdersTable = () => {
             </tr>
           </thead>
           <tbody>
-            {orders.map((order, index) => (
+            {tableData.map((order) => (
               <tr
-                key={index}
+                key={order.id}
                 className={`border-b hover:bg-gray-50 ${isRowSelected(order.id) ? "bg-gray-200" : ""}`}
               >
                 <td className="py-3 px-4">
@@ -194,7 +215,10 @@ const OrdersTable = () => {
                 <td className="py-3 px-4">{order.fee}</td>
                 <td className="py-3 px-4">
                   <span
-                    className={`px-2 py-1 rounded-full text-sm font-medium ${getStatusStyle(order.status)}`}
+                    className={`inline-block px-3 py-1 rounded-sm text-xs font-medium text-center ${getStatusStyle(
+                      order.status
+                    )} max-w-full truncate cursor-pointer`}
+                    onClick={() => handleStatusClick(order.id)} // Click to change status
                   >
                     {order.status}
                   </span>

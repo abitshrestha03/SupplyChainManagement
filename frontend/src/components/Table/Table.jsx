@@ -8,13 +8,14 @@ const Table = ({ columns, data, title }) => {
   // State to manage the checkbox status (checked or unchecked)
   const [isChecked, setIsChecked] = useState(false); // Select-all checkbox state
   const [selectedRows, setSelectedRows] = useState(new Set()); // Track selected rows
+  const [tableData, setTableData] = useState(data); // Data state to update on status change
 
   // Handle checkbox toggle (select/unselect all)
   const handleCheckboxChange = () => {
     setIsChecked(!isChecked);
     if (!isChecked) {
       // Select all rows
-      const allRowIds = new Set(data.map((_, index) => index));
+      const allRowIds = new Set(tableData.map((_, index) => index));
       setSelectedRows(allRowIds);
     } else {
       // Deselect all rows
@@ -34,7 +35,24 @@ const Table = ({ columns, data, title }) => {
   };
 
   // Check if all rows are selected
-  const isAllRowsSelected = selectedRows.size === data.length;
+  const isAllRowsSelected = selectedRows.size === tableData.length;
+
+  // Handle status click to change the value
+  const handleStatusClick = (index) => {
+    const newData = [...tableData];
+    const currentStatus = newData[index].status;
+
+    // Logic to cycle through statuses
+    if (currentStatus === "Delivered") {
+      newData[index].status = "Pending";
+    } else if (currentStatus === "Pending") {
+      newData[index].status = "Shipping";
+    } else if (currentStatus === "Shipping") {
+      newData[index].status = "Delivered";
+    }
+
+    setTableData(newData); // Update the data with the new status
+  };
 
   return (
     <div className="overflow-x-auto mt-4">
@@ -79,7 +97,7 @@ const Table = ({ columns, data, title }) => {
         </thead>
 
         <tbody className="text-gray-600 text-sm font-semibold">
-          {data.map((item, index) => (
+          {tableData.map((item, index) => (
             <tr
               key={index}
               className={`border-b border-gray-200 hover:bg-gray-100 ${
@@ -101,15 +119,16 @@ const Table = ({ columns, data, title }) => {
                   {/* Conditionally style 'status' column */}
                   {column.accessor === "status" ? (
                     <span
-                      className={`py-1 px-6 rounded-sm text-xs ${
+                      className={`py-1 px-6 rounded-sm text-xs cursor-pointer ${ // Add cursor pointer for interaction
                         item[column.accessor] === "Delivered"
-                          ? "bg-green-100 text-green-600"
+                          ? "bg-table-green text-txt-green"
                           : item[column.accessor] === "Pending"
-                          ? "bg-yellow-100 text-yellow-600"
+                          ? "bg-table-yellow text-txt-yellow"
                           : item[column.accessor] === "Shipping"
-                          ? "bg-blue-100 text-blue-600"
+                          ? "bg-table-blue text-txt-blue "
                           : "bg-gray-100 text-gray-600"
                       }`}
+                      onClick={() => handleStatusClick(index)} // Trigger status change on click
                     >
                       {item[column.accessor]}
                     </span>

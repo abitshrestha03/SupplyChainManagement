@@ -1,13 +1,13 @@
-import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 
 const OverviewTabs = () => {
-  const [activeTab, setActiveTab] = useState("shipment");
-
   const navigate = useNavigate();
+  const location = useLocation(); // Get current location (URL path)
+  
+  // Determine the active tab based on the current URL path
+  const activeTab = location.pathname === "/shipment/tracking" ? "tracking" : "shipment";
 
   const handleTabClick = (tab) => {
-    setActiveTab(tab); // Update active tab state
     if (tab === "shipment") {
       navigate("/shipment"); // Navigate to the Shipment page
     } else if (tab === "tracking") {
@@ -26,7 +26,7 @@ const OverviewTabs = () => {
         }`}
         onClick={() => handleTabClick("shipment")}
       >
-        Overviews
+        Overview
       </button>
 
       {/* Tracking Tab */}
@@ -45,3 +45,4 @@ const OverviewTabs = () => {
 };
 
 export default OverviewTabs;
+

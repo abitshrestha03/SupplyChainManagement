@@ -1,4 +1,3 @@
-
 import DashboardTabs from "../../components/Tabs/DashboardTab";
 import Button from "../../components/Buttons/Button";
 import DownArrowIcon from "../../assets/icons/DownArrowIcon";
@@ -8,8 +7,12 @@ import DottedArrowLine from "../../assets/icons/DottedArrowLine";
 import Truck from "../../assets/images/truck.png";
 
 import TrackingTimeline from "./TrackingStatus";
+import AddShipmentModal from "./NewShipmentModal";
+import { useState } from "react";
 
 const ShipmentTracker = () => {
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
   return (
     <div className="bg-body-color w-full h-screen flex flex-col ps-2 pe-6 py-4 mt-16">
       <div className="flex justify-between mb-6">
@@ -22,10 +25,15 @@ const ShipmentTracker = () => {
             textColor="gray"
             icon={<DownArrowIcon />}
           />
-          <Button text="+ New Shipment" bgColor="#003DFF" textColor="white" />
+          <button
+            className="bg-[#003DFF] text-white rounded-md shadow-lg px-4 py-2"
+            onClick={() => setIsModalOpen(true)}
+          >
+            + New Shipment
+          </button>{" "}
         </div>
       </div>
-      <TrackingTimeline/>
+      <TrackingTimeline />
 
       {/* Main Content */}
       <div className="flex space-x-6 mt-4">
@@ -165,6 +173,10 @@ const ShipmentTracker = () => {
           </div>
         </div>
       </div>
+      <AddShipmentModal
+        isOpen={isModalOpen}
+        onClose={() => setIsModalOpen(false)}
+      />
     </div>
   );
 };

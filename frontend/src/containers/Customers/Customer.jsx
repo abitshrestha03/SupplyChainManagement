@@ -313,13 +313,13 @@ const Customer = () => {
                       <td className="px-4 py-2 border-b">{order.fee}</td>
                       <td className="px-4 py-2 border-b">
                         <span
-                          className={`px-2 py-1 rounded-full text-white ${
+                          className={`px-2 py-1 rounded text-sm  ${
                             order.status === "Delivered"
-                              ? "bg-green-500"
-                              : "bg-blue-500"
+                              ? "bg-table-green text-txt-green"
+                              : "bg-table-blue text-txt-blue"
                           }`}
                         >
-                          {order.status}
+                         {order.status}
                         </span>
                       </td>
                     </tr>
