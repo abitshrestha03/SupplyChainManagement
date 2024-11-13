@@ -64,7 +64,7 @@ const Inventory = () => {
     }
   ]
   return (
-    <div className="bg-body-color w-full h-screen flex flex-col ps-2 pe-6 py-4">
+    <div className="bg-body-color w-full h-screen flex flex-col ps-2 pe-6 py-4 mt-16">
       <div className="flex justify-between">
         <div></div>
         <div className="rightButtons flex items-center gap-2">

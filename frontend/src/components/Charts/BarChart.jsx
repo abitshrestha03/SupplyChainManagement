@@ -46,6 +46,7 @@ const BarChart = () => {
         data: [1000, 700, 500, 800, 900, 690, 900, 300, 750, 600, 880, 950],
         backgroundColor: "#eaeaea",
         borderRadius: 5,
+        hoverBackgroundColor: "#003DFF",
       },
     ],
   };

@@ -11,7 +11,7 @@ import TrackingTimeline from "./TrackingStatus";
 
 const ShipmentTracker = () => {
   return (
-    <div className="bg-body-color w-full h-screen flex flex-col ps-2 pe-6 py-4">
+    <div className="bg-body-color w-full h-screen flex flex-col ps-2 pe-6 py-4 mt-16">
       <div className="flex justify-between mb-6">
         <DashboardTabs />
         <div className="rightButtons flex items-center gap-2">

@@ -104,13 +104,48 @@ const LineChart = () => {
     responsive: true,
     plugins: {
       legend: { display: false },
+      tooltip: {
+        enabled: true,
+        mode: "nearest",
+        intersect: false,
+        external: function (context) {
+          const { chart, tooltip } = context;
+          const ctx = chart.ctx;
+  
+          if (tooltip.opacity === 0) {
+            chart.update();
+            return;
+          }
+  
+          const x = tooltip.caretX;
+          const topY = chart.scales.y.top;
+          const bottomY = chart.scales.y.bottom;
+  
+          // Get the index of the currently hovered point
+          const dataIndex = tooltip.dataPoints?.[0]?.dataIndex;
+  
+          // Check if the hovered point is one of the specific points (April, August, November)
+          if ([4, 7, 10].includes(dataIndex)) {
+            // Draw the dotted vertical line only on specific points
+            ctx.save();
+            ctx.beginPath();
+            ctx.setLineDash([5, 5]); // Creates a dotted effect
+            ctx.moveTo(x, topY);
+            ctx.lineTo(x, bottomY);
+            ctx.lineWidth = 1;
+            ctx.strokeStyle = 'rgba(0, 0, 0, 0.2)';
+            ctx.stroke();
+            ctx.restore();
+          }
+        }
+      }
     },
     layout: {
       padding: {
-        left: -3, // Padding for the left side of the chart area
-        right: 20, // Padding for the right side of the chart area
-        top: 20, // Padding above the chart content
-        bottom: 10, // Padding below the chart content
+        left: -3,
+        right: 20,
+        top: 20,
+        bottom: 10,
       },
     },
     scales: {
@@ -147,15 +182,14 @@ const LineChart = () => {
           beginAtZero: true,
           stepSize: 200,
           min: 0,
-          max: 500,
-          callback: function (value) {
-            return value;
-          },
+          max: 1000, // Adjust max if necessary
         },
         drawBorder: false,
       },
     },
   };
+  
+  
 
   return (
     <div className="bg-white shadow rounded-lg">

@@ -11,7 +11,7 @@ const OverviewTabs = () => {
     if (tab === "shipment") {
       navigate("/shipment"); // Navigate to the Shipment page
     } else if (tab === "tracking") {
-      navigate("/tracking"); // Navigate to the Tracking page
+      navigate("/shipment/tracking"); // Navigate to the Tracking page
     }
   };
 

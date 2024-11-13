@@ -3,7 +3,7 @@ import OrdersTable from "../../components/Table/OrdersTable";
 
 const Order = () => {
   return (
-    <div className="bg-body-color w-full h-screen flex flex-col ps-2 pe-6 py-4">
+    <div className="bg-body-color w-full h-screen flex flex-col ps-2 pe-6 py-4 mt-12">
       <div className="grid grid-cols-4 gap-4 mt-8">
         <DashboardCard
           title="Total Orders"
