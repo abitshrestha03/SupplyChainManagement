@@ -10,7 +10,7 @@ const Header = () => {
     setIsPopupOpen(!isPopupOpen);
   };
   return (
-    <header className="flex items-center justify-between py-4 px-6 bg-white">
+    <header className="fixed top-0 right-0 left-72 flex items-center justify-between py-4 px-6 bg-white">
       <h1 className="text-3xl font-medium">Dashboard</h1>
       <div className="flex items-center space-x-4">
         <div className="header-icons flex gap-2">
