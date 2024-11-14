@@ -136,8 +136,8 @@ const Inventory = () => {
                     onClick={() => handleStatusChange(item.id)}
                     className={`cursor-pointer inline-block px-3 py-1 rounded-sm text-xs font-medium text-center ${
                       item.Action === "Add to Order"
-                        ? "bg-gray-400 text-white"
-                        : "bg-green-500 text-white"
+                        ? "bg-[#BDBDBD] text-white"
+                        : "bg-[#5EC320] text-white"
                     }`}
                   >
                     {item.Action}
