@@ -7,6 +7,7 @@ import Shipment from "./containers/Shipment/Shipment";
 import Order from "./containers/Orders/Order";
 import Customer from "./containers/Customers/Customer";
 import ShipmentTracker from "./containers/Shipment/Tracking";
+import NoPageAvailable from "./containers/PageNotFound";
 
 const App = () => {
   return (
@@ -22,6 +23,8 @@ const App = () => {
             <Route path="/orders" element={<Order/>}/>
             <Route path='/customers' element={<Customer />}/>
             <Route path='/shipment/tracking' element={<ShipmentTracker />}/>
+            <Route path='/support' element={<NoPageAvailable />}/>
+            <Route path='/settings' element={<NoPageAvailable />}/>
           </Routes>
         </div>
       </div>
