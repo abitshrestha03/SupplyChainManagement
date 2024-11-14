@@ -20,14 +20,16 @@ const Header = () => {
       <div className="flex items-center space-x-4">
         {/* Header Icons */}
         <div className="header-icons flex gap-3 sm:gap-4">
-          <div className="bg-white shadow p-2 rounded-full">
+          <div className="bg-white shadow p-2 rounded">
             <SearchIcon />
           </div>
-          <div className="bg-white shadow p-2 rounded-full">
+          <div className="bg-white shadow p-2 rounded">
             <SettingsIcon />
           </div>
-          <div className="bg-white shadow p-2 rounded-full">
+          <div className="bg-white shadow p-2 rounded relative">
             <BellIcon />
+            {/* Red notification dot */}
+            <div className="absolute top-3   left-3 w-2 h-2 bg-[#FF0000] rounded-full"></div>
           </div>
         </div>
 
@@ -36,7 +38,9 @@ const Header = () => {
 
         {/* Profile and Name Section */}
         <div className="flex items-center gap-2 sm:gap-3">
-          <div className="text-black font-medium text-sm sm:text-base">Abit Shrestha</div>
+          <div className="text-black font-medium text-sm sm:text-base">
+            Abit Shrestha
+          </div>
 
           <img
             src={ProfilePhoto}
@@ -81,14 +85,18 @@ const Header = () => {
               />
               <div>
                 <h2 className="text-xl mb-1 font-semibold">Abit Shrestha</h2>
-                <p className="text-gray-500 text-xs">abitshrestha03@gmail.com</p>
+                <p className="text-gray-500 text-xs">
+                  abitshrestha03@gmail.com
+                </p>
               </div>
             </div>
 
             {/* Profile Form */}
             <form className="space-y-4 pt-4">
               <div className="flex space-x-4 items-center justify-between">
-                <label className="block text-black font-medium text-xs">Name</label>
+                <label className="block text-black font-medium text-xs">
+                  Name
+                </label>
                 <div className="flex gap-2">
                   <input
                     type="text"
@@ -104,7 +112,9 @@ const Header = () => {
               </div>
 
               <div className="flex justify-between items-center">
-                <label className="block text-black font-medium text-xs">Email</label>
+                <label className="block text-black font-medium text-xs">
+                  Email
+                </label>
                 <input
                   type="email"
                   value="abitshrestha03@gmail.com"
@@ -113,7 +123,9 @@ const Header = () => {
               </div>
 
               <div className="flex justify-between items-center">
-                <label className="block text-black font-medium text-xs">Username</label>
+                <label className="block text-black font-medium text-xs">
+                  Username
+                </label>
                 <input
                   type="text"
                   value="abitshrestha11"
@@ -122,7 +134,9 @@ const Header = () => {
               </div>
 
               <div className="flex justify-between items-center">
-                <label className="block font-medium text-xs">Phone Number</label>
+                <label className="block font-medium text-xs">
+                  Phone Number
+                </label>
                 <input
                   type="text"
                   value="9812345678"
