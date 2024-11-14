@@ -1,4 +1,4 @@
-import { useState } from "react"; // Import useState for managing checkbox state
+import { useState } from "react"; 
 import ExportIcon from "../../assets/icons/ExportIcon";
 import FilterIcon from "../../assets/icons/FilterIcon";
 import ThreeDots from "../../assets/icons/ThreeDots";
@@ -27,9 +27,9 @@ const Table = ({ columns, data, title }) => {
   const handleRowCheckboxChange = (index) => {
     const newSelectedRows = new Set(selectedRows);
     if (newSelectedRows.has(index)) {
-      newSelectedRows.delete(index); // Deselect this row
+      newSelectedRows.delete(index); 
     } else {
-      newSelectedRows.add(index); // Select this row
+      newSelectedRows.add(index); 
     }
     setSelectedRows(newSelectedRows);
   };
@@ -42,7 +42,6 @@ const Table = ({ columns, data, title }) => {
     const newData = [...tableData];
     const currentStatus = newData[index].status;
 
-    // Logic to cycle through statuses
     if (currentStatus === "Delivered") {
       newData[index].status = "Pending";
     } else if (currentStatus === "Pending") {
@@ -87,7 +86,6 @@ const Table = ({ columns, data, title }) => {
               />
             </th>
 
-            {/* Render other column headers */}
             {columns.map((column, index) => (
               <th key={index} className="py-3 px-6 text-left">
                 {column.label}
@@ -119,7 +117,7 @@ const Table = ({ columns, data, title }) => {
                   {/* Conditionally style 'status' column */}
                   {column.accessor === "status" ? (
                     <span
-                      className={`py-1 px-6 rounded-sm text-xs cursor-pointer ${ // Add cursor pointer for interaction
+                      className={`py-1 px-6 rounded-sm text-xs cursor-pointer ${ 
                         item[column.accessor] === "Delivered"
                           ? "bg-table-green text-txt-green"
                           : item[column.accessor] === "Pending"
@@ -128,7 +126,7 @@ const Table = ({ columns, data, title }) => {
                           ? "bg-table-blue text-txt-blue "
                           : "bg-gray-100 text-gray-600"
                       }`}
-                      onClick={() => handleStatusClick(index)} // Trigger status change on click
+                      onClick={() => handleStatusClick(index)} 
                     >
                       {item[column.accessor]}
                     </span>

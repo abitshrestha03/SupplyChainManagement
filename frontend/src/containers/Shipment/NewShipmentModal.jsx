@@ -1,6 +1,6 @@
 import { useState, useCallback } from "react";
 import { useDropzone } from "react-dropzone";
-import { UploadCloud } from "lucide-react"; // Adjust this import if necessary
+import { UploadCloud } from "lucide-react"; 
 import Button from "../../components/Buttons/Button";
 
 // eslint-disable-next-line react/prop-types

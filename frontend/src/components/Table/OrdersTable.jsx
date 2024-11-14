@@ -107,7 +107,6 @@ const OrdersTable = () => {
     const orderIndex = updatedData.findIndex((order) => order.id === orderId);
     const currentStatus = updatedData[orderIndex].status;
 
-    // Logic to cycle through statuses
     if (currentStatus === "Delivered") {
       updatedData[orderIndex].status = "Pending";
     } else if (currentStatus === "Pending") {
@@ -218,7 +217,7 @@ const OrdersTable = () => {
                     className={`inline-block px-3 py-1 rounded-sm text-xs font-medium text-center ${getStatusStyle(
                       order.status
                     )} max-w-full truncate cursor-pointer`}
-                    onClick={() => handleStatusClick(order.id)} // Click to change status
+                    onClick={() => handleStatusClick(order.id)} 
                   >
                     {order.status}
                   </span>
