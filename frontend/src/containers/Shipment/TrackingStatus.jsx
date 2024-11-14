@@ -11,35 +11,46 @@ const TrackingTimeline = () => {
     <div className="flex items-center justify-between px-6 py-3 bg-white rounded-full shadow-lg space-x-2">
       {/* Processing */}
       <div className="flex items-center space-x-2">
-        <img src={TrackingOne} />
-        <span className="text-sm font-medium text-black hidden lg:block ">Processing</span>
+        <img
+          src={TrackingOne}
+          className="w-[6vw] sm:w-[10vw] md:w-[3vw] lg:w-[2vw]"
+        />
+        <span className="text-sm font-medium text-black hidden lg:block ">
+          Processing
+        </span>
       </div>
       <img src={RedLine} />
 
       {/* In Transit */}
       <div className="flex items-center space-x-2">
-        <img src={Transit} />
-        <span className="text-sm font-medium text-black hidden lg:block">In Transit</span>
+        <img src={Transit} className="w-[6vw] sm:w-[10vw] md:w-[3vw] lg:w-[2vw]" />
+        <span className="text-sm font-medium text-black hidden lg:block">
+          In Transit
+        </span>
       </div>
       <img src={RedLine} />
 
       {/* Package */}
       <div className="flex items-center space-x-2">
-        <img src={Package} />
-        <span className="text-sm font-medium text-black hidden lg:block">Package</span>
+        <img src={Package} className="w-[6vw] sm:w-[10vw] md:w-[3vw] lg:w-[2vw]" />
+        <span className="text-sm font-medium text-black hidden lg:block">
+          Package
+        </span>
       </div>
       <img src={RedLine} />
 
       {/* Delivery */}
       <div className="flex items-center space-x-2">
-        <img src={Delivery} />
-        <span className="text-sm font-medium text-black hidden lg:block">Delivery</span>
+        <img src={Delivery} className="w-[6vw] sm:w-[10vw] md:w-[3vw] lg:w-[2vw]" />
+        <span className="text-sm font-medium text-black hidden lg:block">
+          Delivery
+        </span>
       </div>
       <img src={Line} />
 
       {/* Order Delivered */}
       <div className="flex items-center space-x-2">
-        <CheckCiricle />
+        <CheckCiricle className="w-[6vw] sm:w-[10vw] md:w-[3vw] lg:w-[2vw]" />
         <span className="text-sm font-medium text-black hidden lg:block">
           Order Delivered
         </span>{" "}
