@@ -15,7 +15,6 @@ import AddShipmentModal from "../Shipment/NewShipmentModal";
 const Dashboard = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
 
-
   const columns = [
     { label: "Order Id", accessor: "orderId" },
     { label: "Category", accessor: "category" },
@@ -85,10 +84,10 @@ const Dashboard = () => {
   ];
 
   return (
-    <div className="bg-body-color w-full h-screen flex flex-col ps-2 pe-6 py-4 mt-20">
-      <div className="flex justify-between">
+    <div className="bg-body-color w-full h-screen flex flex-col p-4 lg:p-6 mt-20">
+      <div className="flex flex-wrap justify-between items-center">
         <DashboardTabs />
-        <div className="rightButtons flex items-center gap-2">
+        <div className="flex gap-2 mt-4 lg:mt-0">
           <Button
             text="Week"
             bgColor="white"
@@ -105,7 +104,7 @@ const Dashboard = () => {
         </div>
       </div>
 
-      <div className="grid grid-cols-4 gap-4 mt-8">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mt-8">
         <DashboardCard
           title="Total Shipments"
           value="71.21"
@@ -136,158 +135,24 @@ const Dashboard = () => {
         />
       </div>
 
-      <div className="grid grid-cols-2 mt-6">
-        <div className="w-[500px]">
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mt-6">
+        <div className="w-full">
           <BarChartGraph />
         </div>
-        <div className="w-[670px] h-[50px] ms-[-80px] shadow-lg">
+        <div className="w-full h-auto overflow-hidden">
           <LineChart />
         </div>
       </div>
 
-      <div className="h-[50px]">
+      <div className="mt-6">
         <Table
           columns={columns}
           data={shipmentData}
           title="Shipment Tracking"
         />
       </div>
+
       <AddShipmentModal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} />
-
-      {/* {isModalOpen && (
-        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-stretch justify-center z-50">
-          <div className="bg-white w-[848px] rounded-lg shadow-lg relative flex flex-col h-full">
-            <div className="bg-[#f5f5f5] rounded-t-lg flex justify-between pt-2 px-4">
-              <h2 className="text-lg font-semibold mb-4">Add Shipment</h2>
-              <button
-                className="bg-white px-2 rounded-full"
-                onClick={() => setIsModalOpen(false)}
-              >
-                X
-              </button>
-            </div>
-
-            <form className="grid grid-cols-1 md:grid-cols-2 gap-4 px-6 py-6 overflow-y-auto flex-grow">
-              <div className="space-y-2 flex flex-col">
-                <label htmlFor="productName" className="font-semibold text-xs">
-                  Product Name
-                </label>
-                <input
-                  type="text"
-                  className="border border-gray-300 p-2 rounded-md"
-                  placeholder="Type Product's Name"
-                />
-              </div>
-
-              <div className="space-y-2 flex flex-col">
-                <label htmlFor="productId" className="font-semibold text-xs">
-                  Product ID
-                </label>
-                <input
-                  type="text"
-                  className="border border-gray-300 p-2 rounded-md"
-                  placeholder="Type Product's ID"
-                />
-              </div>
-
-              <div className="space-y-2 flex flex-col">
-                <label
-                  htmlFor="pickupLocation"
-                  className="font-semibold text-xs"
-                >
-                  Product ID
-                </label>
-                <input
-                  type="text"
-                  className="border border-gray-300 p-2 rounded-md"
-                  placeholder="Type Pickup Location"
-                />
-              </div>
-
-              <div className="space-y-2 flex flex-col">
-                <label htmlFor="dropLocation" className="font-semibold text-xs">
-                  Drop Location
-                </label>
-                <input
-                  type="text"
-                  className="border border-gray-300 p-2 rounded-md"
-                  placeholder="Type Drop Location"
-                />
-              </div>
-
-              <div className="space-y-2 flex flex-col">
-                <label htmlFor="phoneNumber" className="font-semibold text-xs">
-                  Phone Number
-                </label>
-                <input
-                  type="tel"
-                  className="border border-gray-300 p-2 rounded-md"
-                  placeholder="Type Phone Number"
-                />
-              </div>
-
-              <div className="space-y-2 flex flex-col">
-                <label htmlFor="amount" className="font-semibold text-xs">
-                  Amount
-                </label>
-                <input
-                  type="number"
-                  className="border border-gray-300 p-2 rounded-md"
-                  placeholder="Type Amount"
-                />
-              </div>
-
-              <div className="space-y-2 flex flex-col col-span-2">
-                <label htmlFor="description" className="font-semibold text-xs">
-                  Description
-                </label>
-                <textarea
-                  id="description"
-                  placeholder="Product Description"
-                  className="w-full min-h-[120px] border border-gray-300 p-2 rounded-md"
-                />
-              </div>
-
-              <div
-                {...getRootProps()}
-                className={`w-full col-span-2 border-2 border-dashed rounded-lg p-8 text-center cursor-pointer transition-colors ${
-                  isDragActive
-                    ? "border-primary bg-primary/5"
-                    : "border-muted-foreground/25"
-                }`}
-              >
-                <input {...getInputProps()} />
-                <UploadCloud className="mx-auto h-12 w-12 text-muted-foreground" />
-                <p className="mt-2 text-sm text-muted-foreground">
-                  Drag & Drop or{" "}
-                  <span className="text-primary font-medium">choose file</span>{" "}
-                  to upload
-                </p>
-                <p className="text-xs text-muted-foreground mt-1">
-                  Supported format: jpeg, png
-                </p>
-                {files.length > 0 && (
-                  <div className="mt-4">
-                    <p className="text-sm font-medium">Selected files:</p>
-                    {files.map((file) => (
-                      <p
-                        key={file.name}
-                        className="text-sm text-muted-foreground"
-                      >
-                        {file.name}
-                      </p>
-                    ))}
-                  </div>
-                )}
-              </div>
-            </form>
-
-            <div className="flex justify-center space-x-2 p-4 mt-[20px]">
-              <Button text="Add Shipment" bgColor="#003DFF" textColor="white" />
-            </div>
-          </div>
-        </div>
-      )} */}
     </div>
   );
 };
