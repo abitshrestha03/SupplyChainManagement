@@ -172,7 +172,7 @@ const Customer = () => {
       </div>
 
       {isPopupOpen && (
-        <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50">
+        <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50">
           <div className="bg-white rounded-lg w-1/3 p-6">
             <div className="flex bg-[#f5f5f5] pt-2 px-4 py-3 mt-[-24px] mx-[-24px] items-center rounded justify-between">
               <h2 className="text-xl font-bold">Customer Preview</h2>
@@ -246,7 +246,7 @@ const Customer = () => {
       )}
 
       {isOrderHistoryOpen && (
-        <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50">
+        <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50">
           <div className="bg-white w-[1017px]">
             <div className="flex justify-between items-center py-6 px-6">
               <h2 className="text-xl font-semibold mb-4">
