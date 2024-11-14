@@ -35,7 +35,7 @@ const LineChart = () => {
     if (chartRef.current) {
       const ctx = chartRef.current.canvas.getContext("2d");
       const gradientFill = ctx.createLinearGradient(0, 0, 0, 400);
-      gradientFill.addColorStop(0, "rgba(17, 73, 255, 255)"); // Solid blue at the top
+      gradientFill.addColorStop(0, "rgba(17, 73, 255, 1)"); // Solid blue at the top
       gradientFill.addColorStop(1, "rgba(255, 255, 255, 0)"); // Transparent at the bottom
       setGradient(gradientFill);
     }
@@ -64,7 +64,6 @@ const LineChart = () => {
         borderColor: "#003dff",
         pointBorderWidth: 2,
         pointBackgroundColor: function (context) {
-          // Blue inner color for all points
           const index = context.dataIndex;
           if ([4, 7, 10].includes(index)) {
             return "#003dff"; // Blue inner color
@@ -72,7 +71,6 @@ const LineChart = () => {
           return "rgba(0, 0, 0, 0)"; // Transparent for others
         },
         pointBorderColor: function (context) {
-          // White outer border for specific points
           const index = context.dataIndex;
           if ([4, 7, 10].includes(index)) {
             return "#ffffff"; // White border color
@@ -81,15 +79,11 @@ const LineChart = () => {
         },
         fill: true,
         borderWidth: 1,
-        // pointBackgroundColor: "#ffffff",
-        // pointBorderColor: "#3F83F8",
         pointHoverRadius: 5,
         pointHoverBackgroundColor: "#ffffff",
         pointHoverBorderColor: "#3F83F8",
-        // pointRadius: 4,
         tension: 0.4,
         pointRadius: function (context) {
-          // Only show points on specific data points
           return (
             [4, null, null, null, 4, null, null, 4, null, null, 4, null][
               context.dataIndex
@@ -111,25 +105,22 @@ const LineChart = () => {
         external: function (context) {
           const { chart, tooltip } = context;
           const ctx = chart.ctx;
-  
+
           if (tooltip.opacity === 0) {
             chart.update();
             return;
           }
-  
+
           const x = tooltip.caretX;
           const topY = chart.scales.y.top;
           const bottomY = chart.scales.y.bottom;
-  
-          // Get the index of the currently hovered point
+
           const dataIndex = tooltip.dataPoints?.[0]?.dataIndex;
-  
-          // Check if the hovered point is one of the specific points (April, August, November)
+
           if ([4, 7, 10].includes(dataIndex)) {
-            // Draw the dotted vertical line only on specific points
             ctx.save();
             ctx.beginPath();
-            ctx.setLineDash([5, 5]); // Creates a dotted effect
+            ctx.setLineDash([5, 5]);
             ctx.moveTo(x, topY);
             ctx.lineTo(x, bottomY);
             ctx.lineWidth = 1;
@@ -137,13 +128,13 @@ const LineChart = () => {
             ctx.stroke();
             ctx.restore();
           }
-        }
-      }
+        },
+      },
     },
     layout: {
       padding: {
         left: -3,
-        right: 20,
+        right: 0,
         top: 20,
         bottom: 10,
       },
@@ -182,17 +173,15 @@ const LineChart = () => {
           beginAtZero: true,
           stepSize: 200,
           min: 0,
-          max: 1000, // Adjust max if necessary
+          max: 1000,
         },
         drawBorder: false,
       },
     },
   };
-  
-  
 
   return (
-    <div className="bg-white shadow rounded-lg">
+    <div className="bg-white shadow rounded-lg w-full max-w-4xl mx-auto">
       <div className="flex bg-[#f0f0f0] px-4 py-4 justify-between items-center">
         <h2 className="text-black text-lg font-medium">Sales Trend</h2>
         <div className="flex gap-2">
@@ -209,21 +198,21 @@ const LineChart = () => {
             className="shadow-lg px-2 rounded-md"
           >
             <ThreeDots />
-          </button>{" "}
+          </button>
         </div>
       </div>
       <div className="px-4 py-6">
         <p className="text-4xl font-semibold mb-2">9920 Units</p>
-        <div className="flex w-[11.3vw] items-center justify-between mb-4">
+        <div className="flex items-center justify-between mb-4 max-w-xs">
           <p className="text-gray-500 text-xs">vs Last year</p>
           <p
-            className={`text-[10px] ${"bg-[#dff3d2] rounded-xl px-2 text-[#87d259] font-medium flex items-center gap-2"}`}
+            className="text-[10px] bg-[#dff3d2] rounded-xl px-2 text-[#87d259] font-medium flex items-center gap-2"
           >
-            {`+${+9.3}%`}
-            {<UpwardArrowIcon />}
+            +9.3%
+            <UpwardArrowIcon />
           </p>
         </div>
-        <div className="w-[655px] h-[190px]">
+        <div className="w-full h-[190px]">
           <Line ref={chartRef} data={data} options={options} />
         </div>
       </div>
