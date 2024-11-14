@@ -36,8 +36,8 @@ const Sidebar = () => {
             to="/shipment"
             className={({ isActive }) =>
               isActive
-                ? "flex items-center block text-white bg-[#003DFF] py-3 px-2 rounded-md w-[15.56vw]"
-                : "flex items-center block text-black py-3 px-2 hover:bg-custom-hover rounded-md w-[15.56vw]"
+                ? "flex items-center block text-white bg-[#003DFF] py-3 px-2 w-[10vw] sm:w-[15.56vw] rounded-md"
+                : "flex items-center block text-black px-2 py-3 w-[10vw] sm:w-[15.56vw] hover:bg-custom-hover rounded-md"
             }
           >
             <ShipmentIcon
@@ -52,8 +52,8 @@ const Sidebar = () => {
             to="/inventory"
             className={({ isActive }) =>
               isActive
-                ? "flex items-center block text-white bg-[#003DFF] py-3 px-2 rounded-md  w-[15.56vw]"
-                : "flex items-center block text-black px-2 py-3 hover:bg-custom-hover rounded-md  w-[15.56vw]"
+                ? "flex items-center block text-white bg-[#003DFF] py-3 px-2 w-[10vw] sm:w-[15.56vw] rounded-md"
+                : "flex items-center block text-black px-2 py-3 w-[10vw] sm:w-[15.56vw] hover:bg-custom-hover rounded-md"
             }
           >
             <InventoryIcon
@@ -68,8 +68,8 @@ const Sidebar = () => {
             to="/orders"
             className={({ isActive }) =>
               isActive
-                ? "flex items-center block text-white bg-[#003DFF] py-3 px-2 rounded-md w-[15.56vw]"
-                : "flex items-center block text-black px-2 py-3 hover:bg-custom-hover rounded-md w-[15.56vw]"
+                ? "flex items-center block text-white bg-[#003DFF] py-3 px-2 w-[10vw] sm:w-[15.56vw] rounded-md"
+                : "flex items-center block text-black px-2 py-3 w-[10vw] sm:w-[15.56vw] hover:bg-custom-hover rounded-md"
             }
           >
             <OrdersIcon className="w-6 h-6" style={{ fill: "currentColor" }} />
@@ -81,8 +81,8 @@ const Sidebar = () => {
             to="/customers"
             className={({ isActive }) =>
               isActive
-                ? "flex items-center block text-white bg-[#003DFF] py-3 px-2 rounded-md w-[15.56vw]"
-                : "flex items-center block text-black px-2 py-3 hover:bg-custom-hover rounded-md w-[15.56vw]"
+                ? "flex items-center block text-white bg-[#003DFF] py-3 px-2 w-[10vw] sm:w-[15.56vw] rounded-md"
+                : "flex items-center block text-black px-2 py-3 w-[10vw] sm:w-[15.56vw] hover:bg-custom-hover rounded-md"
             }
           >
             <CustomersIcon
@@ -102,8 +102,8 @@ const Sidebar = () => {
             to="/support"
             className={({ isActive }) =>
               isActive
-                ? "flex items-center block text-white bg-[#003DFF] py-3 px-2 rounded-md w-[15.56vw]"
-                : "flex items-center block text-black px-2 py-3 hover:bg-custom-hover rounded-md w-[15.56vw]"
+                ? "flex items-center block text-white bg-[#003DFF] py-3 px-2 w-[10vw] sm:w-[15.56vw] rounded-md"
+                : "flex items-center block text-black px-2 py-3 w-[10vw] sm:w-[15.56vw] hover:bg-custom-hover rounded-md"
             }
           >
             <SupportIcon className="w-6 h-6" style={{ fill: "currentColor" }} />
@@ -115,8 +115,8 @@ const Sidebar = () => {
             to="/settings"
             className={({ isActive }) =>
               isActive
-                ? "flex items-center block text-white bg-[#003DFF] py-3 px-2 rounded-md w-[15.56vw]"
-                : "flex items-center block text-black px-2 py-3 hover:bg-custom-hover rounded-md w-[15.56vw]"
+                ? "flex items-center block text-white bg-[#003DFF] py-3 px-2 w-[10vw] sm:w-[15.56vw] rounded-md"
+                : "flex items-center block text-black px-2 py-3 w-[10vw] sm:w-[15.56vw] hover:bg-custom-hover rounded-md"
             }
           >
             <SettingsIcon
