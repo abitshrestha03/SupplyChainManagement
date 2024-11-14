@@ -93,12 +93,12 @@ const Header = () => {
                   <input
                     type="text"
                     value="Abit"
-                    className="border border-gray-300 rounded py-2 w-[169px] text-sm"
+                    className="border border-gray-300 rounded py-2 pl-2 w-[169px] text-sm"
                   />
                   <input
                     type="text"
                     value="Shrestha"
-                    className="border border-gray-300 rounded py-2 w-[160px] text-sm"
+                    className="border border-gray-300 rounded py-2 pl-2 w-[160px] text-sm"
                   />
                 </div>
               </div>
@@ -108,7 +108,7 @@ const Header = () => {
                 <input
                   type="email"
                   value="abitshrestha03@gmail.com"
-                  className="w-full md:w-[338px] border border-gray-300 rounded py-2 text-sm"
+                  className="w-full md:w-[338px] border border-gray-300 pl-2 rounded py-2 text-sm"
                 />
               </div>
 
@@ -117,7 +117,7 @@ const Header = () => {
                 <input
                   type="text"
                   value="abitshrestha11"
-                  className="w-full md:w-[338px] border border-gray-300 rounded py-2 text-sm"
+                  className="w-full md:w-[338px] border border-gray-300 rounded pl-2 py-2 text-sm"
                 />
               </div>
 
@@ -126,7 +126,7 @@ const Header = () => {
                 <input
                   type="text"
                   value="9812345678"
-                  className="w-full md:w-[338px] border border-gray-300 rounded py-2 text-sm"
+                  className="w-full md:w-[338px] border border-gray-300 rounded pl-2 py-2  text-sm"
                 />
               </div>
 
