@@ -83,7 +83,7 @@ const Inventory = () => {
   };
 
   return (
-    <div className="bg-body-color w-full h-screen flex flex-col ps-2 pe-6 py-4 mt-16">
+    <div className="bg-body-color w-full min-h-screen flex flex-col px-2 py-4 mt-16">
       <div className="flex justify-between">
         <div></div>
         <div className="rightButtons flex items-center gap-2">
@@ -98,21 +98,21 @@ const Inventory = () => {
       </div>
 
       <div className="mt-8">
-        <div className="grid grid-cols-6 gap-24">
-          <div className="grid grid-cols-2 gap-y-4 gap-x-6 col-span-3 h-[337px] w-[630px]">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-6 gap-8">
+          <div className="grid grid-cols-2 gap-y-4 gap-x-6 col-span-2 sm:col-span-2 lg:col-span-3">
             <MetricCard title="Total Inventory" value="$ 520,000" />
             <MetricCard title="Units on Hand" value="1,200" />
             <MetricCard title="Units on Order" value="3,000" />
             <MetricCard title="Units to Reorder" value="500" />
           </div>
-          <div className="grid grid-cols col-span-3 h-[337px] w-[545px]">
+          <div className="col-span-1 sm:col-span-1 lg:col-span-3">
             <StockAvailabilityChart />
           </div>
         </div>
       </div>
 
       {/* Table */}
-      <div className="overflow-x-auto max-w-full mt-8">
+      <div className="overflow-x-auto mt-8">
         <table className="min-w-full bg-white">
           <thead className="sticky top-0 bg-gray-100 z-10">
             <tr>
