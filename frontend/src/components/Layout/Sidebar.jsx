@@ -18,14 +18,15 @@ const Sidebar = () => {
             to="/"
             className={({ isActive }) =>
               isActive
-                ? "flex items-center block text-white bg-[#003DFF] py-3 px-2 w-[15.56vw] rounded-md md-[2vw]"
-                : "flex items-center block text-black px-2 py-3 w-[15.56vw] hover:bg-custom-hover rounded-md"
+                ? "flex items-center block text-white bg-[#003DFF] py-3 px-2 w-[10vw] sm:w-[15.56vw] rounded-md"
+                : "flex items-center block text-black px-2 py-3 w-[10vw] sm:w-[15.56vw] hover:bg-custom-hover rounded-md"
             }
           >
             <DashboardIcon
               className="w-6 h-6"
               style={{ fill: "currentColor" }}
             />
+            {/* Hide text on small screens */}
             <span className="ml-5 font-normal text-sm hidden md:block">
               Dashboard
             </span>
@@ -43,7 +44,9 @@ const Sidebar = () => {
               className="w-6 h-6"
               style={{ fill: "currentColor" }}
             />
-            <span className="ml-5 font-normal text-sm hidden md:block">Shipment</span>
+            <span className="ml-5 font-normal text-sm hidden md:block">
+              Shipment
+            </span>
           </NavLink>
           <NavLink
             to="/inventory"
@@ -57,7 +60,9 @@ const Sidebar = () => {
               className="w-6 h-6"
               style={{ fill: "currentColor" }}
             />
-            <span className="ml-5 font-normal text-sm hidden md:block">Inventory</span>
+            <span className="ml-5 font-normal text-sm hidden md:block">
+              Inventory
+            </span>
           </NavLink>
           <NavLink
             to="/orders"
@@ -68,7 +73,9 @@ const Sidebar = () => {
             }
           >
             <OrdersIcon className="w-6 h-6" style={{ fill: "currentColor" }} />
-            <span className="ml-5 font-normal text-sm hidden md:block">Orders</span>
+            <span className="ml-5 font-normal text-sm hidden md:block">
+              Orders
+            </span>
           </NavLink>
           <NavLink
             to="/customers"
@@ -82,7 +89,9 @@ const Sidebar = () => {
               className="w-6 h-6"
               style={{ fill: "currentColor" }}
             />
-            <span className="ml-5 font-normal text-sm hidden md:block">Customers</span>
+            <span className="ml-5 font-normal text-sm hidden md:block">
+              Customers
+            </span>
           </NavLink>
           <div className="flex flex-col">
             <div className="mt-12">
@@ -98,7 +107,9 @@ const Sidebar = () => {
             }
           >
             <SupportIcon className="w-6 h-6" style={{ fill: "currentColor" }} />
-            <span className="ml-5 font-normal text-sm hidden md:block">Help and Support</span>
+            <span className="ml-5 font-normal text-sm hidden md:block">
+              Help and Support
+            </span>
           </NavLink>
           <NavLink
             to="/settings"
@@ -112,7 +123,9 @@ const Sidebar = () => {
               className="w-6 h-6"
               style={{ fill: "currentColor" }}
             />
-            <span className="ml-5 font-normal text-sm hidden md:block">Settings</span>
+            <span className="ml-5 font-normal text-sm hidden md:block">
+              Settings
+            </span>
           </NavLink>
         </nav>
       </div>
