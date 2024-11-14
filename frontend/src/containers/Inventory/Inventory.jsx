@@ -83,10 +83,10 @@ const Inventory = () => {
   };
 
   return (
-    <div className="bg-body-color w-full min-h-screen flex flex-col px-2 py-4 mt-16">
-      <div className="flex justify-between">
+    <div className="bg-body-color w-full min-h-screen flex flex-col px-4 py-4 mt-16">
+      <div className="flex flex-wrap justify-between items-center">
         <div></div>
-        <div className="rightButtons flex items-center gap-2">
+        <div className="flex items-center gap-2 mt-4 sm:mt-0">
           <Button text="Week" bgColor="white" textColor="text-gray-700" />
           <button
             className="bg-[#003DFF] text-white rounded-md shadow-lg px-4 py-2"
@@ -98,14 +98,14 @@ const Inventory = () => {
       </div>
 
       <div className="mt-8">
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-6 gap-8">
-          <div className="grid grid-cols-2 gap-y-4 gap-x-6 col-span-2 sm:col-span-2 lg:col-span-3">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-6 gap-8">
+          <div className="grid grid-cols-2 gap-y-4 gap-x-6 col-span-2 md:col-span-2 lg:col-span-3">
             <MetricCard title="Total Inventory" value="$ 520,000" />
             <MetricCard title="Units on Hand" value="1,200" />
             <MetricCard title="Units on Order" value="3,000" />
             <MetricCard title="Units to Reorder" value="500" />
           </div>
-          <div className="col-span-1 sm:col-span-1 lg:col-span-3">
+          <div className="col-span-1 md:col-span-1 lg:col-span-3">
             <StockAvailabilityChart />
           </div>
         </div>
@@ -117,7 +117,7 @@ const Inventory = () => {
           <thead className="sticky top-0 bg-gray-100 z-10">
             <tr>
               {columns.map((col) => (
-                <th key={col.accessor} className="py-3 px-4 text-left border-b">
+                <th key={col.accessor} className="py-3 px-4 text-left border-b text-xs sm:text-sm">
                   {col.label}
                 </th>
               ))}
@@ -126,11 +126,11 @@ const Inventory = () => {
           <tbody>
             {inventoryData.map((item) => (
               <tr key={item.id} className="border-b hover:bg-gray-50">
-                <td className="py-3 px-4">{item.Product}</td>
-                <td className="py-3 px-4">{item.SKU}</td>
-                <td className="py-3 px-4">{item["On-hand"]}</td>
-                <td className="py-3 px-4">{item["Units-to-Reorder"]}</td>
-                <td className="py-3 px-4">{item.Cost}</td>
+                <td className="py-3 px-4 text-xs sm:text-sm">{item.Product}</td>
+                <td className="py-3 px-4 text-xs sm:text-sm">{item.SKU}</td>
+                <td className="py-3 px-4 text-xs sm:text-sm">{item["On-hand"]}</td>
+                <td className="py-3 px-4 text-xs sm:text-sm">{item["Units-to-Reorder"]}</td>
+                <td className="py-3 px-4 text-xs sm:text-sm">{item.Cost}</td>
                 <td className="py-3 px-4">
                   <span
                     onClick={() => handleStatusChange(item.id)}
